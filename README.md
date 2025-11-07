@@ -7,8 +7,8 @@
 
 A real-time, zero-auth collaborative whiteboard built with the **MERN** stack and **Socket.IO**. Just share a room code and start drawing together instantly.
 
-> **Note:** Add a GIF of your app in action here!
-> `![SyncSketch Demo](./demo.gif)`
+> `![SyncSketch Demo](https://drive.google.com/file/d/1Dm5XPIKNW50qSOe29J0NMY2COey-kRCl/view?usp=sharing)`
+> `![SyncSketch Demo](https://drive.google.com/file/d/1kc0W_ePYKZti7BFSQQHeTAl1OimPKAEO/view?usp=sharing)`
 
 ---
 
