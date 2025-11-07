@@ -66,7 +66,7 @@ Follow these instructions to get a local copy up and running for development.
 
 1.  **Clone the Repository:**
     ```bash
-    git clone (https://github.com/your-username/SyncSketch.git)
+    git clone https://github.com/your-username/SyncSketch.git
     cd SyncSketch
     ```
 
