@@ -1,217 +1,180 @@
-# Collaborative Whiteboard App
+# SyncSketch 🎨
 
-A real-time collaborative whiteboard built with the **MERN** stack and **Socket.IO** for live drawing and cursor sharing between users — without any authentication. Just share a room code and draw together!
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18-339933?logo=nodedotjs)](https://nodejs.org/)
+[![Socket.IO](https://img.shields.io/badge/Socket.IO-4-010101?logo=socketdotio)](https://socket.io/)
+
+A real-time, zero-auth collaborative whiteboard built with the **MERN** stack and **Socket.IO**. Just share a room code and start drawing together instantly.
+
+> **Note:** Add a GIF of your app in action here!
+> `![SyncSketch Demo](./demo.gif)`
+
 ---
 
-## 🚀 Project Overview
+## 📚 Table of Contents
 
-This project is a whiteboard web application that allows multiple users to join a shared room and draw together in real time. Users can join rooms by entering simple alphanumeric codes, and all drawing and cursor movements are synchronized across connected users instantly.
-
----
-
-## ⚙️ Tech Stack
-
-| Layer         | Technology         |
-|---------------|--------------------|
-| Frontend      | React.js           |
-| Backend       | Node.js + Express  |
-| Database      | MongoDB            |
-| Real-time     | Socket.IO          |
-| Styling       | Tailwind CSS / CSS |
+* [✨ Features](#-features)
+* [⚙️ Tech Stack](#️-tech-stack)
+* [🚀 Getting Started](#-getting-started)
+    * [Prerequisites](#prerequisites)
+    * [Installation & Setup](#installation--setup)
+    * [Running the App](#running-the-app)
+* [🔌 Real-time API (Socket.IO)](#-real-time-api-socketio)
+* [🚢 Deployment](#-deployment)
+* [📝 License](#-license)
 
 ---
 
 ## ✨ Features
 
-### ✅ Room Management
-- Enter a 6–8 character alphanumeric room code to join
-- No login or registration required
-- If room doesn't exist, it gets created dynamically
-
-### ✅ Drawing Features
-- Pencil tool (black, red, blue, green)
-- Adjustable stroke width with slider
-- Clear canvas button
-- Smooth line drawing using HTML5 Canvas
-
-### ✅ Real-time Collaboration
-- Live drawing sync across all connected users
-- Real-time cursor tracking with unique user colors
-- Live user count for each room
-- All tabs stay in sync 
+* **⚡ Real-Time Collaboration:** All drawings and cursor movements are synced instantly across all users in the room.
+* **🖱️ Live Cursor Tracking:** See where other users are pointing with uniquely colored cursors.
+* **🚪 Simple Room Management:** No login needed. Join or create a room with a simple 6-8 character code.
+* **✏️ Complete Drawing Tools:**
+    * Pencil tool with multiple colors.
+    * Eraser tool.
+    * Adjustable stroke width.
+    * "Clear All" button to wipe the canvas for everyone.
+* **👨‍👩‍👧‍👦 Live User Count:** See exactly how many people are in the room.
+* **🖥️ Multi-Tab Sync:** Uses a `BroadcastChannel` to keep your tools and canvas in sync across your *own* browser tabs.
 
 ---
 
-## 🗂️ Folder Structure
+## ⚙️ Tech Stack
 
-project-root/
-├── client/ # React frontend
-│ ├── src/
-│ │ ├── components/
-│ │ │ ├── RoomJoin.jsx
-│ │ │ ├── Whiteboard.jsx
-│ │ │ ├── DrawingCanvas.jsx
-│ │ │ ├── Toolbar.jsx
-│ │ │ └── UserCursors.jsx
-│ │ ├── socket.js
-│ │ └── App.js
-│ └── package.json
-├── server/ # Express + Socket.IO backend
-│ ├── models/
-│ │ └── Room.js
-│ ├── routes/
-│ │ └── roomRoutes.js
-│ ├── socket/
-│ │ └── socketHandlers.js
-│ ├── server.js
-│ └── package.json
-├── README.md
+| Layer | Technology |
+| :--- | :--- |
+| **Frontend** | React.js, Tailwind CSS |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB (for room persistence, etc. - *optional*) |
+| **Real-time** | Socket.IO |
 
 ---
 
-##  Setup Instructions
+## 🚀 Getting Started
 
-###  Prerequisites
+Follow these instructions to get a local copy up and running for development.
 
-- **Node.js** (v16 or above)
-- **MongoDB** (local or Atlas)
-- **npm** or **yarn**
+### Prerequisites
 
-----
+* **Node.js** (v16.x or newer)
+* **npm** / **yarn**
+* **MongoDB** (a local instance or a free [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) cluster)
 
-### ⚙️ Installation Steps
+### Installation & Setup
 
-#### 1️⃣ Clone the Repository
+1.  **Clone the Repository:**
+    ```bash
+    git clone [https://github.com/your-username/SyncSketch.git](https://github.com/your-username/SyncSketch.git)
+    cd SyncSketch
+    ```
 
-```bash
-git clone https://github.com/your-username/collab-whiteboard.git
-cd collab-whiteboard
-```
-#### 2️⃣Backend setup
+2.  **Set up the Backend (Server):**
+    ```bash
+    # Navigate to the server directory
+    cd server
+    
+    # Install dependencies
+    npm install
+    ```
+    Create a `.env` file in the `/server` directory and add your variables:
+    ```env
+    PORT=8000
+    MONGODB_URI=your_mongodb_connection_string
+    ```
 
-```bash
-cd server
-npm install
-```
-Create a .env file inside the server/ directory:<br/>
-```env
-PORT= 8000 <br/>
-MONGODB_URI=your mongoDB connection string
-```
+3.  **Set up the Frontend (Client):**
+    ```bash
+    # Navigate to the client directory from the root
+    cd ../client
+    
+    # Install dependencies
+    npm install
+    ```
+    Create a `.env` file in the `/client` directory to point to your backend:
+    ```env
+    VITE_BACKEND_URL=http://localhost:8000
+    ```
 
-#### 3️⃣Frontend Setup
+### Running the App
 
-```bash
-cd ../client
-npm install
-```
-Create a .env file inside the client/ directory:<br/>
-```env
-VITE_BACKEND_URL=http://localhost:8000
-```
+You'll need two terminals open.
 
-#### Start the frontend:
-```bash
-npm run dev
-```
-----
+1.  **Start the Backend (Terminal 1):**
+    ```bash
+    # In the /server directory
+    npm run start
+    ```
 
-## API Documentation
-| Method | Endpoint             | Description           |
-| ------ | -------------------- | --------------------- |
-| POST   | `/api/rooms/join`    | Join or create a room |
-| GET    | `/api/rooms/:roomId` | Get room details      |
+2.  **Start the Frontend (Terminal 2):**
+    ```bash
+    # In the /client directory
+    npm run dev
+    ```
 
+Open `http://localhost:5173` (or whatever port Vite specifies) in your browser!
 
-Example POST Request
-```http
-POST /api/rooms/join
-Content-Type: application/json
+---
 
-{
-  "roomId": "abc123"
-}
-```
---------
+## 🔌 Real-time API (Socket.IO)
 
-## Socket.IO Events
+The app's real-time functionality is handled by Socket.IO.
+
 ### Client → Server
-- join-room — join a room by roomId
-- cursor-move — send mouse position
-- draw-start — begin a drawing stroke
-- draw-move — continue drawing
-- draw-end — finish the stroke
-- clear-canvas — clear the canvas for all users
+
+* `join-room` (roomId): Fired when a user joins a room.
+* `cursor-move` (data): Sends the user's mouse position and user ID.
+* `draw-start` (data): Fired on `onMouseDown` to begin a drawing stroke.
+* `draw-move` (data): Fired on `onMouseMove` to send path coordinates.
+* `draw-end` (data): Fired on `onMouseUp` to finish the stroke.
+* `clear-canvas` (data): Emitted when a user clicks the "Clear All" button.
+
 ### Server → Client
-- user-count — receive updated number of active users
-- cursor-update — receive cursor positions from others
-- draw-start — begin stroke from another user
-- draw-move — receive stroke path data
-- draw-end — end stroke
-- clear-canvas — clear canvas across all users
-  ----
-  
-## Architecture Overview
 
-```scss
-[Client Browser]
-   ↓ Socket.IO
-[React App - Frontend]
-   ↓ API & Socket.IO
-[Express Server - Backend]
-   ↓
-[MongoDB] (optional for persistence)
-```
------
+* `user-count` (count): Sends the updated number of active users in the room.
+* `cursor-update` (data): Broadcasts a user's cursor position to others.
+* `draw-start` (data): Broadcasts the beginning of a stroke from another user.
+* `draw-move` (data): Broadcasts the stroke path data to others.
+* `draw-end` (data): Broadcasts the end of a stroke.
+* `clear-canvas` (data): Tells all clients in the room to clear their canvas.
 
-##  Deployment Guide
-1. Deploy Backend
- Use platforms like:
-- vercel
-- Render 
-- Railway
-- [VPS or Docker Hosting]
-- 
-Ensure:
-- WebSocket transport enabled (transports: ['websocket'])
-- CORS properly configured
-- MongoDB URI (Atlas recommended) in environment
+---
 
-Example .env for production:
+## 🚢 Deployment
 
-```env
+Ready to go live? Here’s a simple guide.
 
-PORT=8000
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/whiteboard
-```
-2. Deploy Frontend
-Use:
-- Vercel
-- Netlify
+### Backend (Server)
 
-Set  ``` env VITE_BACKEND_URL=https://your-backend-url.com ``` in your .env.production.
+1.  **Hosting:** Use a service that supports Node.js and WebSockets.
+    * [Render](https://render.com/) (Recommended, easy)
+    * [Railway](https://railway.app/)
+    * Heroku
+    * VPS (DigitalOcean, Vultr, etc.)
 
-3. MongoDB Atlas
-- Create a cluster on MongoDB Atlas
-- Whitelist your backend IP
-- Replace local URI with Atlas URI in .env
+2.  **Database:** Use a production **MongoDB Atlas** cluster.
+    * Create a free cluster on MongoDB Atlas.
+    * Whitelist your server's IP address (or `0.0.0.0/0` for all, if you're not on a static IP).
+    * Get the connection string.
 
--------
+3.  **Environment Variables:** Set these in your hosting provider's dashboard:
+    * `PORT`: (Usually set by the provider)
+    * `MONGODB_URI`: Your production MongoDB Atlas connection string.
 
-## ✅ Status
- - Join/Create room via code
- - Real-time drawing sync
- - Cursor sync
- - Multi-tab sync
- - Clear canvas across all clients
- - Active user tracking
- -----
+### Frontend (Client)
 
-📝 License
-MIT © 2025 Amisha
+1.  **Hosting:** Use a static site host.
+    * [Vercel](https://vercel.com/) (Recommended, fast)
+    * [Netlify](https://www.netlify.com/)
 
+2.  **Environment Variables:** Set this in your Vercel/Netlify dashboard:
+    * `VITE_BACKEND_URL`: The **live URL** of your deployed backend (e.g., `https://syncsketch-server.onrender.com`)
 
+---
 
+## 📝 License
 
+This project is open-source and available under the MIT License.
 
-  
+MIT © 2025 Atharv Mujumale
